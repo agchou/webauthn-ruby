@@ -95,7 +95,7 @@ module WebAuthn
     attr_reader :credentials
 
     def new_credential
-      [SecureRandom.random_bytes(16), OpenSSL::PKey::EC.generate("prime256v1"), 0]
+      [SecureRandom.random_bytes(16), OpenSSL::PKey.generate_key("ED25519"), 0]
     end
 
     def hashed(target)

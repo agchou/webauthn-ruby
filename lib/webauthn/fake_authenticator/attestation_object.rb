@@ -55,7 +55,7 @@ module WebAuthn
           begin
             credential_data =
               if attested_credential_data
-                { id: credential_id, public_key: credential_key.public_key }
+                { id: credential_id, public_key: OpenSSL::PKey.read(credential_key.public_to_der) }
               end
 
             AuthenticatorData.new(
